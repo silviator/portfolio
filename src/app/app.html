@@ -1,0 +1,41 @@
+<div
+  class="min-h-screen bg-background text-text font-sans"
+  [ngStyle]="themeStyle"
+>
+  <app-header [config]="config"></app-header>
+
+  <main class="max-w-[960px] mx-auto px-6">
+    @for (section of sections; track section) {
+      <section
+        [id]="section"
+        class="py-12 border-b border-slate-500/40 last:border-b-0"
+      >
+        @if (section === 'hero') {
+          <app-hero
+            [hero]="config.hero"
+            [socials]="config.socials"
+          />
+        }
+
+        @if (section === 'experience') {
+          <app-experience [items]="config.experience" />
+        }
+
+        @if (section === 'projects') {
+          <app-projects [items]="config.projects" />
+        }
+
+        @if (section === 'about') {
+          <app-about [about]="config.about" />
+        }
+
+        @if (section === 'contact') {
+          <app-contact
+            [contact]="config.contact"
+            [socials]="config.socials"
+          />
+        }
+      </section>
+    }
+  </main>
+</div>

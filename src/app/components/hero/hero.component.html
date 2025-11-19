@@ -1,0 +1,52 @@
+<div
+  class="grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-10 items-center"
+>
+  <div class="flex flex-col gap-2">
+    <h1 class="text-3xl sm:text-4xl md:text-[2.8rem] font-bold">
+      {{ hero.name }}
+    </h1>
+    <p class="text-lg text-text">
+      {{ hero.role }}
+    </p>
+    <p class="text-sm text-muted">
+      {{ hero.location }}
+    </p>
+    <p class="mt-3 text-sm text-muted">
+      {{ hero.summary }}
+    </p>
+
+    @if (socials.length) {
+      <div class="mt-5 flex flex-wrap gap-3">
+        @for (social of socials; track social) {
+          <a
+            class="inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm border border-muted bg-slate-950/95 no-underline transition-colors transform hover:border-primary hover:bg-sky-900/90 hover:-translate-y-px"
+            [href]="social.url"
+            target="_blank"
+            rel="noreferrer"
+          >
+            @if (getSocialIcon(social.id); as socialIcon) {
+              <img
+                class="h-4 w-4"
+                [src]="socialIcon"
+                [alt]="social.label + ' icono'"
+              />
+            }
+            <span>{{ social.label }}</span>
+          </a>
+        }
+      </div>
+    }
+  </div>
+
+  @if (hero.avatarUrl) {
+    <div
+      class="flex justify-center md:justify-end mt-6 md:mt-0 order-first md:order-none"
+    >
+      <img
+        class="w-44 h-44 rounded-full object-cover border-4 border-muted"
+        [src]="hero.avatarUrl"
+        [alt]="hero.name"
+      />
+    </div>
+  }
+</div>
